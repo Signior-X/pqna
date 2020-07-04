@@ -32,13 +32,26 @@ APIs:
 After changing the variables don't forget to create a new sample.json
 '''
 
-last_question_number = 4
+last_question_number = 16
+
 qdics = {
     0: 'Does ***** likes Shivani?',
     1: 'Kya ***** ka byah hogya?',
     2: 'Has ***** ever kissed in his life?',
-    3: 'Does ***** laugh a lot?',
-    4: 'Can ***** murder someone?'
+    3: '***** spreads more cringe than other.'
+    4: 'Can ***** murder someone?',
+    5: 'Will ***** go for a road trip alone?',
+    6: 'Is ***** got slapped by a person of opposite gender',
+    7: 'Does ***** ever had sexted with the person of same sex',
+    8: 'The best friend of Rachita is *****.',
+    9: 'Has ***** ever got laid with opposite gender?',
+    10: 'Has ***** ever broke someone\'s heart?',
+    11: 'Has ***** ever had a crush in 3:7?',
+    12: 'Can ***** have more than one crush at the same time?',
+    13: 'According to you, does ***** likes bdsm?',
+    14: 'Does ***** likes his cream?',
+    15: 'What does ***** likes more upper balls or lower balls?',
+    16: '***** is very tharki.'
 }
 
 # qdics = {
@@ -54,16 +67,18 @@ qdics = {
 #     9: 'Kya ***** ne kabhi muh se makhi khayi hai?'
 # }
 
-last_player = 7
+last_player = 9
 players = {
-    0: 'Babu',
+    0: 'Aryan',
     1: 'Sarthak',
     2: 'Khubi',
     3: 'Deepali',
     4: 'Devansh',
-    5: 'Pranshu',
-    6: 'Samarth',
-    7: 'Priyanshu'
+    5: 'Parshva',
+    6: 'Priyam',
+    7: 'Anshika',
+    8: 'Dhruv',
+    9: 'Atul'
 }
 
 
