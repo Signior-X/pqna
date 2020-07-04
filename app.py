@@ -71,7 +71,7 @@ Function to generate a random question
 def generate_ques():
     '''
     params: none
-    
+
     return:
         qr: random question
         pr: random person
@@ -90,17 +90,17 @@ Function to read the sample data file where data is stored
 def read_sample_data_file():
     '''
     params: none
-    
+
     return:
-        json_object (dictionary) - The data present in the sample.json  
+        json_object (dictionary) - The data present in the sample.json
     '''
-    # Opening JSON file 
-    with open('sample.json', 'r') as openfile: 
-    
-        # Reading from json file 
-        json_object = json.load(openfile) 
-    
-    return json_object 
+    # Opening JSON file
+    with open('sample.json', 'r') as openfile:
+
+        # Reading from json file
+        json_object = json.load(openfile)
+
+    return json_object
     # print(type(json_object)) # dictionary
 
 '''
@@ -113,11 +113,11 @@ def write_sample_data_file(dic):
     return: none
     '''
 
-    # Serializing json  
+    # Serializing json
     json_object = json.dumps(dic, indent = 4)
 
-    # Writing to sample.json 
-    with open("sample.json", "w") as outfile: 
+    # Writing to sample.json
+    with open("sample.json", "w") as outfile:
         outfile.write(json_object)
 
     # Done
@@ -144,7 +144,7 @@ def agree():
                 new_dic[key_to_set] = data_to_set
 
     sorted_dic = {k: v for k, v in sorted(new_dic.items(), key=lambda item: item[1])}
-    
+
     print(sorted_dic)
     return render_template('popular.html', data=sorted_dic)
 
@@ -163,7 +163,7 @@ def disagree():
                 new_dic[key_to_set] = data_to_set
 
     sorted_dic = {k: v for k, v in sorted(new_dic.items(), key=lambda item: item[1])}
-    
+
     print(sorted_dic)
     return render_template('popular.html', data=sorted_dic)
 
@@ -182,13 +182,13 @@ def ranklist():
             # check for so that not both are false at the same time
             if((data_to_set['no'] != 0) or (data_to_set['yes'] != 0)):
                 new_dic[key_to_set] = data_to_set
-    
+
     return render_template('popular.html', data=new_dic)
 # End of ranks page
 
 # ----------------- APIs ----------------------
 
-''' 
+'''
 API to generate a new random variable
 
 return:
@@ -216,7 +216,7 @@ return:
 @app.route('/api/increase', methods=['POST'])
 def add_score():
     current_data = read_sample_data_file()
-    
+
     pno = str(request.json['pno'])
     qno = str(request.json['qno'])
     option = str(request.json['option']) # option is yes or no
@@ -243,17 +243,17 @@ return:
 @app.route('/api/create')
 def create_database():
     dic = dict()
-    # Data to be written 
+    # Data to be written
     for i in players:
         dic[i] = {}
         for j in qdics:
             dic[i][j] = {'yes': 0, 'no': 0}
-    
-    # Serializing json  
-    json_object = json.dumps(dic, indent = 4) 
-    
-    # Writing to sample.json 
-    with open("sample.json", "w") as outfile: 
+
+    # Serializing json
+    json_object = json.dumps(dic, indent = 4)
+
+    # Writing to sample.json
+    with open("sample.json", "w") as outfile:
         outfile.write(json_object)
 
     # Return what dictionary it has created
@@ -272,5 +272,5 @@ def get_data():
 # End of get current data
 
 
-if __name__ == "main":
-    app.run()
+if __name__ == "__main__":
+    app.run(debug = True)
