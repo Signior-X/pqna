@@ -28,6 +28,10 @@ APIs:
 '''
 
 # ----------------- Variables --------------------------
+'''
+After changing the variables don't forget to create a new sample.json
+'''
+
 last_question_number = 4
 qdics = {
     0: 'Does ***** likes Shivani?',
