@@ -6,10 +6,10 @@ app = Flask(__name__)
 
 last_question_number = 4
 qdics = {
-    0: 'Do ***** likes Shivani?',
+    0: 'Does ***** likes Shivani?',
     1: 'Kya ***** ka byah hogya?',
     2: 'Has ***** ever kissed in his life?',
-    3: 'Is ***** laugh a lot?',
+    3: 'Does ***** laugh a lot?',
     4: 'Can ***** murder someone?'
 }
 
@@ -22,6 +22,7 @@ players = {
 }
 
 # Main pages here
+# Most of the work is done in the frontend in the javascript
 @app.route('/')
 def index():
     qr = random.randint(0,last_question_number)
