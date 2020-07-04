@@ -11,5 +11,9 @@
     </head>
     <body>
         {{ data }}
+
+        <script>
+            const data = JSON.parse('{{ data }}');
+        </script>
     </body>
 </html>

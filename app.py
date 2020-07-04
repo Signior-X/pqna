@@ -29,44 +29,40 @@ APIs:
 '''
 
 # ----------------- Variables --------------------------
-last_question_number = 9
-# qdics = {
-#     0: 'Does ***** likes Shivani?',
-#     1: 'Kya ***** ka byah hogya?',
-#     2: 'Has ***** ever kissed in his life?',
-#     3: 'Does ***** laugh a lot?',
-#     4: 'Can ***** murder someone?'
-# }
-
+last_question_number = 4
 qdics = {
-    0: 'Has ***** ever pissed on the bed?',
-    1: 'Does ***** likes to play pubg?',
-    2: 'Kya ***** aagyakari bacha hai?',
-    3: 'Kya ***** din bhar phone ma laga rehta hai?',
-    4: 'Kya ***** ko sab pareshaan karte hai?',
-    5: 'Kya ***** ko sab maarte hai',
-    6: 'Kya ***** ne kabhi mummy ko pareshaan kiya hai?',
-    7: 'Kya ***** abhi chatting ma laga rehta hai?',
-    8: 'Kya ***** kabhi mummy se maar khaya hai?',
-    9: 'Kya ***** ne kabhi muh se makhi khayi hai?'
+    0: 'Does ***** likes Shivani?',
+    1: 'Kya ***** ka byah hogya?',
+    2: 'Has ***** ever kissed in his life?',
+    3: 'Does ***** laugh a lot?',
+    4: 'Can ***** murder someone?'
 }
 
-# players = {
-#     0: 'Babu',
-#     1: 'Sarthak',
-#     2: 'Khubi',
-#     3: 'Deepali',
-#     4: 'Devansh',
+# qdics = {
+#     0: 'Has ***** ever pissed on the bed?',
+#     1: 'Does ***** likes to play pubg?',
+#     2: 'Kya ***** aagyakari bacha hai?',
+#     3: 'Kya ***** din bhar phone ma laga rehta hai?',
+#     4: 'Kya ***** ko sab pareshaan karte hai?',
+#     5: 'Kya ***** ko sab maarte hai',
+#     6: 'Kya ***** ne kabhi mummy ko pareshaan kiya hai?',
+#     7: 'Kya ***** abhi chatting ma laga rehta hai?',
+#     8: 'Kya ***** kabhi mummy se maar khaya hai?',
+#     9: 'Kya ***** ne kabhi muh se makhi khayi hai?'
 # }
 
-last_player = 3
-
+last_player = 7
 players = {
-    0: 'Priyam',
-    1: 'Jatin',
-    2: 'Divyansh',
-    3: 'Tanmay'
+    0: 'Babu',
+    1: 'Sarthak',
+    2: 'Khubi',
+    3: 'Deepali',
+    4: 'Devansh',
+    5: 'Pranshu',
+    6: 'Samarth',
+    7: 'Priyanshu'
 }
+
 
 # ----------------- Functions ---------------------
 '''
@@ -143,7 +139,9 @@ def agree():
     for i in data:
         for j in data[i]:
             key_to_set = qdics[int(j)].replace('*****', players[int(i)])
-            new_dic[key_to_set] = data[i][j]['yes']
+            data_to_set = data[i][j]['yes']
+            if(data_to_set != 0):
+                new_dic[key_to_set] = data_to_set
 
     sorted_dic = {k: v for k, v in sorted(new_dic.items(), key=lambda item: item[1])}
     
@@ -152,7 +150,41 @@ def agree():
 
 @app.route('/disagreed')
 def disagree():
-    return 'Most no and sorted wise'
+    data  = read_sample_data_file()
+    # print(data)
+
+    new_dic = {}
+
+    for i in data:
+        for j in data[i]:
+            key_to_set = qdics[int(j)].replace('*****', players[int(i)])
+            data_to_set = data[i][j]['no']
+            if(data_to_set != 0):
+                new_dic[key_to_set] = data_to_set
+
+    sorted_dic = {k: v for k, v in sorted(new_dic.items(), key=lambda item: item[1])}
+    
+    print(sorted_dic)
+    return render_template('popular.html', data=sorted_dic)
+
+@app.route('/ranks')
+def ranklist():
+    data = read_sample_data_file()
+
+    new_dic = {}
+
+    # Loop to create a new dictionary
+    for i in data:
+        for j in data[i]:
+            key_to_set = qdics[int(j)].replace('*****', players[int(i)])
+            data_to_set = {'no': data[i][j]['no'], 'yes': data[i][j]['yes']}
+
+            # check for so that not both are false at the same time
+            if((data_to_set['no'] != 0) or (data_to_set['yes'] != 0)):
+                new_dic[key_to_set] = data_to_set
+    
+    return render_template('popular.html', data=new_dic)
+# End of ranks page
 
 # ----------------- APIs ----------------------
 

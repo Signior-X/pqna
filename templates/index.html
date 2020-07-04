@@ -81,23 +81,38 @@
             .btn:focus {
                 outline: none;
             }
+            #logo-header {
+                color: #6ab0f3;
+                padding: 4px;
+                margin-left: 8px;
+                margin-right: 8px;
+                font-size: larger;
+                display: inline-block;
+            }
+            @media(max-width: 500px) {
+                #main-content{
+                    margin-top: 0px;
+                }
+            }
         </style>
     </head>
     <body>
         <div id="main">
-            <!-- <div id="top-nav">
+            <div id="top-nav">
         
                 <div id="logo-header">Welcome to qNa</div>
               
-                <div class="right-menu">
-    
+                <div class="right-menu" style="margin-left: auto;">
+                    <a href="/ranks">Status</a>
                 </div>
-            </div> -->
+            </div>
             <div id="main-content">
                 <!-- <h1>Hello</h1> -->
                 <h2>Here is Your Question!</h2>
                 <!-- <h3>{{ qno }}</h3> -->
-                <h1>{{ ques }}</h1>
+                <h1 id="question">{{ ques }}</h1>
+                <div id="p-number" style="display: none;">{{ pno }}</div>
+                <div id="q-number" style="display: none;">{{ qno }}</div>
                 <!-- <h3>{{ pno }}</h3> -->
                 <div id="buttons">
                     <button id="yes-btn" class="btn btn-primary">Yes</button>
@@ -108,5 +123,81 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Scripts here -->
+        <script>
+
+            // Function to generate the new question
+            function generateNewQuestion() {
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // This means generated.... now fill the places
+                        console.log(this.responseText);
+
+                        var responseJson = JSON.parse(this.responseText);
+
+                        document.getElementById('question').innerHTML = responseJson.qname;
+                        document.getElementById('p-number').innerHTML = responseJson.pr;
+                        document.getElementById('q-number').innerHTML = responseJson.qr;
+                    }
+                }
+
+                xhttp.open("POST", "/api/generate", true);
+                //Send the proper header information along with the request
+                xhttp.setRequestHeader("Content-Type", "application/json"); // Necessary for POST
+
+                xhttp.send();
+
+            }
+
+            // optionToSend - 'yes' or 'no'
+            function sendIncreaseRequest(optionToSend) {
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // This means added
+                        // Now open a new question
+                        generateNewQuestion();
+                    }
+                }
+
+                const qNumber = document.getElementById('q-number').innerHTML;
+                const pNumber = document.getElementById('p-number').innerHTML;
+                // Now start making the request
+                // The body parameters to send
+                var reqbody = {
+                    pno: pNumber, 
+                    qno: qNumber,
+                    option: optionToSend
+                };
+                //console.log(reqbody);
+
+                xhttp.open("POST", "/api/increase", true);
+                //Send the proper header information along with the request
+                xhttp.setRequestHeader("Content-Type", "application/json"); // Necessary for POST
+
+                xhttp.send(JSON.stringify(reqbody));
+            }
+
+            var yesBtn = document.getElementById('yes-btn');
+            var noBtn = document.getElementById('no-btn');
+            var skipBtn = document.getElementById('skip-btn');
+            yesBtn.onclick = function() {
+                sendIncreaseRequest('yes');
+            }
+
+            noBtn.onclick = function() {
+                sendIncreaseRequest('no');
+            }
+
+            skipBtn.onclick = function() {
+                generateNewQuestion();
+            }
+
+        </script>
+
     </body>
 </html>
