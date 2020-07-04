@@ -38,10 +38,10 @@ qdics = {
     0: 'Does ***** likes Shivani?',
     1: 'Kya ***** ka byah hogya?',
     2: 'Has ***** ever kissed in his life?',
-    3: '***** spreads more cringe than other.'
+    3: '***** spreads more cringe than other.',
     4: 'Can ***** murder someone?',
     5: 'Will ***** go for a road trip alone?',
-    6: 'Is ***** got slapped by a person of opposite gender',
+    6: 'Has ever ***** got slapped by a person of opposite gender',
     7: 'Does ***** ever had sexted with the person of same sex',
     8: 'The best friend of Rachita is *****.',
     9: 'Has ***** ever got laid with opposite gender?',
@@ -72,12 +72,12 @@ players = {
     0: 'Aryan',
     1: 'Sarthak',
     2: 'Khubi',
-    3: 'Deepali',
+    3: 'Dhruv',
     4: 'Devansh',
     5: 'Parshva',
     6: 'Priyam',
     7: 'Anshika',
-    8: 'Dhruv',
+    8: 'Deepali',
     9: 'Atul'
 }
 
