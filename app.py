@@ -32,26 +32,29 @@ APIs:
 After changing the variables don't forget to create a new sample.json
 '''
 
-last_question_number = 16
+last_question_number = 19
 
 qdics = {
-    0: 'Does ***** likes Shivani?',
+    0: 'Has ***** ever dated his friend\'s ex?',
     1: 'Kya ***** ka byah hogya?',
-    2: 'Has ***** ever kissed in his life?',
-    3: '***** spreads more cringe than other.',
+    2: 'Has ***** ever kissed a stranger?',
+    3: '***** has ever fantasised about a teacher?',
     4: 'Can ***** murder someone?',
-    5: 'Will ***** go for a road trip alone?',
-    6: 'Has ever ***** got slapped by a person of opposite gender',
+    5: 'Kya ***** fantasised about having sex with a dog?',
+    6: 'Has ***** ever kissed a person of same gender?',
     7: 'Does ***** ever had sexted with the person of same sex',
     8: 'The best friend of Rachita is *****.',
     9: 'Has ***** ever got laid with opposite gender?',
     10: 'Has ***** ever broke someone\'s heart?',
-    11: 'Has ***** ever had a crush in 3:7?',
-    12: 'Can ***** have more than one crush at the same time?',
-    13: 'According to you, does ***** likes bdsm?',
+    11: '***** had a friend with benefits scene?',
+    12: '***** had been in a secret relationship.',
+    13: '***** likes bdsm?',
     14: 'Does ***** likes his cream?',
-    15: 'What does ***** likes more upper balls or lower balls?',
-    16: '***** is very tharki.'
+    15: '***** likes to smoke weed',
+    16: 'Has ***** ever smoked a cigarette?',
+    17: 'Has ***** ever made out with someone?',
+    18: 'Kya ***** ne kabhi saste nashe kiye hai?',
+    19: '***** has ever peed in a pool.'
 }
 
 # qdics = {
